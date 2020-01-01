@@ -8,10 +8,6 @@ router.get('/', (req, res, next) => {
     res.render('index');
 });
 
-router.get('/bootstrap.min.css', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../views/layouts/bootstrap.min.css'));
-});
-
 router.get('/signup', (req, res, next) => {
     res.render('signup');
 });
@@ -48,5 +44,7 @@ function isAuthenticated(req, res, next) {
     res.redirect('/signin');
 };
 
+// Handle requests for static files
+router.use(express.static(path.join('src/public')));
 
 module.exports = router;
